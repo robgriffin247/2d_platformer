@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dol82r26ybtk7"]
+
+[ext_resource type="FontFile" uid="uid://x7fckswge708" path="res://General/PixelOperator8.ttf" id="1_daqqv"]
+
+[node name="Text" type="Label"]
+theme_override_fonts/font = ExtResource("1_daqqv")
+theme_override_font_sizes/font_size = 8
+text = "Placeholder"
