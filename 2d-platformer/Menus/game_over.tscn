@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg33ivcuasbum"]
+
+[ext_resource type="PackedScene" uid="uid://d16y8kqrbxgxs" path="res://General/text_bold.tscn" id="1_g4w1t"]
+[ext_resource type="Script" path="res://Menus/retry.gd" id="3_j8mdt"]
+[ext_resource type="FontFile" uid="uid://x7fckswge708" path="res://General/PixelOperator8.ttf" id="3_okiaq"]
+[ext_resource type="PackedScene" uid="uid://685xy3qhquol" path="res://Menus/coin_counter.tscn" id="4_1r6km"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0238522, 0.161766, 0.143019, 0.870588)
+
+[node name="GameOver" parent="." instance=ExtResource("1_g4w1t")]
+offset_left = 384.0
+offset_top = 224.0
+offset_right = 767.0
+offset_bottom = 264.0
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER!
+"
+horizontal_alignment = 1
+
+[node name="Retry" type="Button" parent="."]
+offset_left = 480.0
+offset_top = 448.0
+offset_right = 672.0
+offset_bottom = 512.0
+theme_override_fonts/font = ExtResource("3_okiaq")
+theme_override_font_sizes/font_size = 24
+text = "RETRY"
+script = ExtResource("3_j8mdt")
+
+[node name="CoinCounter" parent="." instance=ExtResource("4_1r6km")]
+offset_left = 512.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 384.0
+
+[connection signal="pressed" from="Retry" to="Retry" method="_on_pressed"]

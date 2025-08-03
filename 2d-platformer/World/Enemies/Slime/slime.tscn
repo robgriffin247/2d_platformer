@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://byshtrr2g8xwf"]
+[gd_scene load_steps=18 format=3 uid="uid://byshtrr2g8xwf"]
 
 [ext_resource type="Texture2D" uid="uid://bxj053isg1ax4" path="res://World/Enemies/Slime/slime_green.png" id="1_55p02"]
 [ext_resource type="Script" path="res://World/Enemies/Slime/slime.gd" id="1_kfyoc"]
 [ext_resource type="PackedScene" uid="uid://bs0bj25hpctrb" path="res://Player/killzone.tscn" id="2_l61ta"]
-[ext_resource type="PackedScene" uid="uid://drysmvuy41e35" path="res://World/Enemies/strikezone.tscn" id="4_otpkx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pipto"]
 atlas = ExtResource("1_55p02")
@@ -84,9 +83,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83ngq"]
 size = Vector2(10, 11)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd6oa"]
-size = Vector2(8, 3)
-
 [sub_resource type="Animation" id="Animation_h2e78"]
 length = 0.001
 tracks/0/type = "value"
@@ -146,14 +142,6 @@ target_position = Vector2(7, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
 target_position = Vector2(-6, 0)
-
-[node name="Strikezone" parent="." instance=ExtResource("4_otpkx")]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Strikezone"]
-position = Vector2(0, -11.5)
-shape = SubResource("RectangleShape2D_jd6oa")
-debug_color = Color(0.842937, 0.36099, 0.326965, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

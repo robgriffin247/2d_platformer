@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2p3vv8ebngoj"]
+
+[ext_resource type="Script" path="res://World/level_transition.gd" id="1_d63nb"]
+[ext_resource type="Texture2D" uid="uid://bcmd6xwnap4sc" path="res://World/world_tileset.png" id="2_vhqvw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c6to"]
+size = Vector2(12, 12)
+
+[node name="LevelTransition" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_d63nb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1c6to")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vhqvw")
+region_enabled = true
+region_rect = Rect2(128, 48, 16, 16)
