@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=4 uid="uid://bp4nwm0yxmw16"]
+
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_w6bae"]
+[ext_resource type="PackedScene" uid="uid://bdrwgrv352vyd" path="res://Worldbuilding/Tilemaps/world_tile_set.tscn" id="2_4st1u"]
+[ext_resource type="PackedScene" uid="uid://bp420ybp8400n" path="res://Worldbuilding/PlayerSpawner/player_spawner.tscn" id="3_cxgpp"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_w6bae")
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="Background" parent="Tilemaps" instance=ExtResource("2_4st1u")]
+
+[node name="Midground" parent="Tilemaps" instance=ExtResource("2_4st1u")]
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
+
+[node name="Foreground" parent="Tilemaps" instance=ExtResource("2_4st1u")]
+z_index = 100
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("3_cxgpp")]
+position = Vector2(0, -16)
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]

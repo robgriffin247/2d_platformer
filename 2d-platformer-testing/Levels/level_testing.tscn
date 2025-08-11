@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=4 uid="uid://j3duulkm85by"]
+
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_2ield"]
+[ext_resource type="PackedScene" uid="uid://bdrwgrv352vyd" path="res://Worldbuilding/Tilemaps/world_tile_set.tscn" id="2_ba3ns"]
+[ext_resource type="PackedScene" uid="uid://bp420ybp8400n" path="res://Worldbuilding/PlayerSpawner/player_spawner.tscn" id="3_syoia"]
+[ext_resource type="PackedScene" uid="uid://c5alqjehr8ui2" path="res://Worldbuilding/Killzone/killzone.tscn" id="4_7x31a"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_phxib"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_2ield")
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="Background" parent="Tilemaps" instance=ExtResource("2_ba3ns")]
+
+[node name="Midground" parent="Tilemaps" instance=ExtResource("2_ba3ns")]
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
+
+[node name="Foreground" parent="Tilemaps" instance=ExtResource("2_ba3ns")]
+z_index = 100
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("3_syoia")]
+position = Vector2(0, -16)
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Killzone" parent="." instance=ExtResource("4_7x31a")]
+position = Vector2(0, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_phxib")

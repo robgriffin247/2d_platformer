@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgihi3u33r76r"
-path="res://.godot/imported/knight.png-386c42ee00942f798f488ae3257da119.ctex"
+uid="uid://befoaosofmq03"
+path="res://.godot/imported/world_tiles.png-8060261b1ed0e2a8ed223f24624453de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/knight.png"
-dest_files=["res://.godot/imported/knight.png-386c42ee00942f798f488ae3257da119.ctex"]
+source_file="res://Worldbuilding/Tilemaps/world_tiles.png"
+dest_files=["res://.godot/imported/world_tiles.png-8060261b1ed0e2a8ed223f24624453de.ctex"]
 
 [params]
 

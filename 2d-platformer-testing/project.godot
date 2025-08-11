@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="2D Platformer Testing"
-run/main_scene="res://playground.tscn"
+run/main_scene="res://Levels/level_testing.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+LevelManager="*res://Managers/level_manager.gd"
+PlayerManager="*res://Managers/player_manager.gd"
+SceneTransition="*res://GUI/SceneTransition/scene_transition.tscn"
+GameOver="*res://GUI/GameOver/game_over.tscn"
 
 [display]
 

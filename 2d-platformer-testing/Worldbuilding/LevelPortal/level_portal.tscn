@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://w2reit8xr834"]
+
+[ext_resource type="Script" path="res://Worldbuilding/LevelPortal/level_portal.gd" id="1_o7q5f"]
+
+[node name="LevelPortal" type="Area2D"]
+monitorable = false
+script = ExtResource("1_o7q5f")
