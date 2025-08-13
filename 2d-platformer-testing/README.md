@@ -6,10 +6,12 @@
 1. Download and install Godot
 1. Download assets
 1. Create a new project
+1. Add assets folder to project root (rename if needed)
 1. Create a Playground scene
-	- Set root to ``Area2D``
+	- Set root to ``Node2D``
 	- Rename root node to ``Playground``
 	- Save the scene in the project root
+1. Run the game and set current scene as main
 
 ## Create the Player
 
@@ -21,10 +23,10 @@
 	- Save the scene
 
 1. Add a ``Sprite2D`` node as a child of Player
-	- In the inspector, set *texture* to *new ImageTexture*
-	- Drag in relevant spritesheet
+	- Drag in relevant spritesheet to Texture in inspector
 	- In the inspector, set *animation* > *Hframes* and *Vframes* to 8 and *frame* to 0
 	- Position ``Sprite`` with feet on y=0 (*transform* > *y: -12*)
+
 1. *Project settings* > *Rendering* > *Textures* > *Default Texture Filter*; set to *Nearest*
 
 1. Add a ``CollisionShape2D`` node as a child of ``Player``
@@ -32,7 +34,7 @@
 
 1. Add a script to the ``Player`` node, using the *Basic Movement* template
 	- Add ``class_name Player extends CharacterBody2D`` at the top
-	- Adjust ``SPEED`` to ``100.0`` and ``JUMP_VELOCITY`` to ``-300.0``
+	- Adjust ``SPEED`` to ``100.0`` and ``JUMP_VELOCITY`` to ``-305.0``
 	- Change ``ui_accept``, ``ui_left`` and ``ui_right`` to ``jump``, ``left`` and ``right`` respectively
 	- *Project Settings* > *Input Map* > *Add New Action* (give the name, press *add*) > *Add input* (*Add*, define, *ok*); repeat for jump, left and right
 	
@@ -41,16 +43,17 @@
 	- Set to autoplay and loop
 	- Set snap to 0.1 and duration to 0.4 seconds
 	- Key the frame of the Sprite2D in the Animation Panel and repeat for frames 0 to 3
-1. Add run and jump animations
-1. Update the player.gd script to call the animations
+1. Add run and jump animations (16-19 and 40-47; loop but not autoplay)
+
+1. Update the player.gd script to call the animations (create ref to animationplayer and sprite and add flip of sprite)
 	```
 	class_name Player extends CharacterBody2D
 
 	@onready var animation_player: AnimationPlayer = $AnimationPlayer
 	@onready var sprite: Sprite2D = $Sprite2D
 
-	const SPEED = 120.0
-	const JUMP_VELOCITY = -300.0
+	const SPEED = 100.0
+	const JUMP_VELOCITY = -305.0
 
 	func _physics_process(delta: float) -> void:
 		# Add gravity
@@ -97,6 +100,8 @@
 	- Set the *shape* to a *WorldBoundaryShape2D*
 	- Position just below ``Player``
 	- Run the game; the player should no longer fall off the screen as the player collision shape has something to collide with
+	- Delete the TemporaryBoundary and the Camera2D
+	- Add a Camera2D node to the Player, setting zoom to 4 and positioning nicely over the Player
 
 #### Optional: PlayerStateMachine
 
@@ -105,38 +110,39 @@ See ``./Player/PlayerStateMachine/README.md``
 ## Create a Level
 
 1. Create a folder called Worldbuilding in project root
-1. Create a WorldTiles scene;
+1. Create a WorldTileset scene;
 	- Set root node as TileMapLayer
-	- Rename to WorldTiles
+	- Rename to WorldTileset
 	- Add a new TileSet (check tile shape and size is 16x16 square)
 	- Drag tileset png into Tileset pane
 	- Adjust the selection of tiles if needed
 	- Add a physics layer
 	- Paint the tiles that should be collidable
-1. Create a Levels folder in project root
-1. Create a Level01 scene
+	- Save scene
+1. Create a Worlds folder in project root
+1. Create a LevelTemplate scene
 	- Type: Node2D
-	- Name: Level01
-	- Save in Area01/Level01
+	- Name: LevelTemplate
+	- Save in Worlds
 1. Add Tiles
-	- Add the WorldTiles scene
+	- Add the WorldTileset scene
 	- Rename to Background
 	- Duplicate twice and rename to Mid- and Foreground
 	- Set Ordering > Z-index of foreground to 100
+1. Create a level by duplicating the template
 	- Build a level by placing tiles in each layer
-	- Save the level
+	- Save the level as Worlds/MyFirstWorld/Level01
 1. Add Level01 to the Playground
-	- Delete the TemporaryBoundary and the Camera2D
-	- Add a Camera2D node to the Player, setting zoom to 4 and positioning nicely over the Player
-	- Add position smoothing to the Camera2D
 	- Reposition the Player node in the Playground so transform is 0,0
 	- Run game
 
 1. Create a platform folder and scene
 	- Root: AnimatableBody2D
 	- Add a Sprite2D and CollisionShape2D
+	- Use region on platform sprite accordingly
 	- Enable one-way collision
 	- Add platforms to level
+	- Change player z index to 10 (so jumps in front of platforms)
 
 1. Make moving platforms
 	- Add platforms to the level
@@ -144,6 +150,105 @@ See ``./Player/PlayerStateMachine/README.md``
 	- Add an animation called move
 	- Key the transform positions appropriately
 	- Add autoplay and looping (ping-pong)
+
+
+### Dying
+
+Aim: When the player dies, a game over screen will appear and player can retry the level by click of a button
+
+- LevelManager will track which level is being played and handle loading of levels
+- GameOver scene will provide the UI
+- Labels and buttons will be made to be standardised in the game
+- Killzone scene will detect when a player enters an area that kills them
+
+1. Add a LevelManager script to Managers folder and autoload
+	- Add load_level() function and current_level variable
+		```extends Node
+
+		var current_level: String = ""
+
+		func load_level(level_path: String) -> void:
+			get_tree().change_scene_to_file(level_path)
+		```
+
+1. Add a level script to level(s)
+	- update current_level on ready()
+		```
+		class_name Level extends Node2D
+
+		func _ready() -> void:
+			LevelManager.current_level = get_tree().current_scene.scene_file_path
+		```
+
+1. Create a GameOver scene in GUI/GameOver
+	- Root CanvasLayer
+	- Control node as a child
+	- Set anchor to full screen
+	- Change name
+	- Add colorrect to Control, setting anchor to full screen and color
+
+1. Add message
+	- Create a scene called label_bold
+	- Label at the root
+	- Add bold font and set size to 8px
+	- Save in General/Labels
+	- Repeat for regular font
+	- Add a "Game Over" label to the Control node in GameOver scene
+
+1. Add retry button
+	- Create scene in General/Buttons called button
+	- Add font and set font size
+	- Save button scene
+	- Add the button scene to the GameOver UI, set text and name node, and position
+
+
+1. Add GameOver as an autoload
+1. Add gameover script, hide the UI on load
+	```
+	extends CanvasLayer
+
+	@onready var retry_button: Button = $Control/RetryButton
+
+	func _ready() -> void:
+		hide()
+		retry_button.pressed.connect(_retry)
+
+	func _retry() -> void:
+		LevelManager.load_level(LevelManager.current_level)
+		hide()
+	```
+
+1. Create a killzone scene in worldbuilding/killzone
+	- Root area2D
+	- Name to Killzone
+	- Attach script
+	```
+	class_name Killzone extends Area2D
+
+	func _ready() -> void:
+		body_entered.connect(_player_entered)
+		
+	func _player_entered(_player: Player) -> void:
+		GameOver.show()
+	```
+
+Should now be able to play via F5, die and reload the level. However, if user goes to level01 scene, and loads via F6, the player is not loaded to the scene.
+
+## Add a portal
+
+Aim: create a portal which will form the spawn point for each level, allowing removal of the playground and player to be added to levels automatically, and later allow a player to transition from one level to another/to sub-levels (e.g. hidden areas)
+
+
+
+## TODO
+
+1. Portal
+1. Pickups
+1. PauseMenu
+
+<!--
+
+
 
 ## Add Level Transitions	
 
@@ -314,3 +419,4 @@ Note: including player spawner; not necessary but allows player to be spawned in
 
 
 ## ADD PLATFORMS
+ --> 

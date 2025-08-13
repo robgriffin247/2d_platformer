@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://i4k8gbldhlmt"]
+
+[ext_resource type="PackedScene" uid="uid://bv2wqjkcub0y0" path="res://Worldbuilding/Tilesets/world_tileset.tscn" id="1_flyep"]
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="Tilesets" type="Node2D" parent="."]
+
+[node name="Back" parent="Tilesets" instance=ExtResource("1_flyep")]
+
+[node name="Mid" parent="Tilesets" instance=ExtResource("1_flyep")]
+
+[node name="Fore" parent="Tilesets" instance=ExtResource("1_flyep")]
+z_index = 100
+
+[node name="Platforms" type="Node2D" parent="."]

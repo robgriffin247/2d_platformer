@@ -7,4 +7,5 @@ func _ready() -> void:
 
 func _reload_level() -> void:
 	GameOver.visible = false
+	#PlayerManager.player_spawned = false
 	#LevelManager.load_level(LevelManager.current_level, "LevelEntry")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnhipohurwmj3"]
+
+[ext_resource type="Script" path="res://Worldbuilding/Killzone/killzone.gd" id="1_1pd22"]
+
+[node name="Killzone" type="Area2D"]
+script = ExtResource("1_1pd22")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://denfupbm3mfhs"]
+
+[ext_resource type="FontFile" uid="uid://dolp8an1vkxs3" path="res://Assets/fonts/PixelOperator8.ttf" id="1_h4dun"]
+
+[node name="Label" type="Label"]
+theme_override_fonts/font = ExtResource("1_h4dun")
+theme_override_font_sizes/font_size = 8

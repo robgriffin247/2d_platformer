@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3ft8sjxboghh"]
+
+[ext_resource type="Script" path="res://GUI/GameOver/game_over.gd" id="1_pk2kk"]
+[ext_resource type="PackedScene" uid="uid://dt04e0svly24" path="res://General/Labels/label_bold.tscn" id="1_xup06"]
+[ext_resource type="PackedScene" uid="uid://bx6dvyvxwgkd1" path="res://General/Buttons/button.tscn" id="3_g5jap"]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_pk2kk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.202216, 0.033664, 0.108243, 0.623529)
+
+[node name="GameOverLabel" parent="Control" instance=ExtResource("1_xup06")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -132.0
+offset_right = 345.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER"
+
+[node name="RetryButton" parent="Control" instance=ExtResource("3_g5jap")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = 68.0
+offset_right = 92.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "retry"
