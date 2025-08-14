@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bug8wexx24mlx"]
+
+[ext_resource type="Script" path="res://Worldbuilding/Portal/portal.gd" id="1_fcuy3"]
+[ext_resource type="Texture2D" uid="uid://bdd3nochyyiph" path="res://Assets/Artwork/sprites/world_tileset.png" id="2_alyvm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pe26h"]
+
+[node name="Portal" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_fcuy3")
+
+[node name="DefaultCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_pe26h")
+
+[node name="DefaultSprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("2_alyvm")
+hframes = 16
+vframes = 16
+frame = 56

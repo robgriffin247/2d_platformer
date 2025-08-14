@@ -7,5 +7,6 @@ func _ready() -> void:
 	retry_button.pressed.connect(_retry)
 
 func _retry() -> void:
-	LevelManager.load_level(LevelManager.current_level)
 	hide()
+	LevelManager.load_level(LevelManager.current_level, "Portal")
+	

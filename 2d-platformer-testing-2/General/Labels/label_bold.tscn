@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dt04e0svly24"]
 
-[ext_resource type="FontFile" uid="uid://c44tydjm634hj" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="1_sjxpo"]
+[ext_resource type="FontFile" uid="uid://c44tydjm634hj" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="1_sjxpo"]
 
 [node name="Label" type="Label"]
 theme_override_fonts/font = ExtResource("1_sjxpo")

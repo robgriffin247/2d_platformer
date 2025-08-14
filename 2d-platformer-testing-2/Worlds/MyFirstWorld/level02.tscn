@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=4 uid="uid://cc581321snbgt"]
+
+[ext_resource type="Script" path="res://Worlds/level.gd" id="1_ccvjc"]
+[ext_resource type="PackedScene" uid="uid://bug8wexx24mlx" path="res://Worldbuilding/Portal/portal.tscn" id="2_p3boj"]
+[ext_resource type="PackedScene" uid="uid://cnhipohurwmj3" path="res://Worldbuilding/Killzone/killzone.tscn" id="3_i0scc"]
+[ext_resource type="PackedScene" uid="uid://bv2wqjkcub0y0" path="res://Worldbuilding/Tilesets/world_tileset.tscn" id="4_q17pd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2rg6d"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ccvjc")
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="Portal" parent="Portals" instance=ExtResource("2_p3boj")]
+position = Vector2(-24, 0)
+exit_position = "Right"
+sprite = false
+collision_shape = false
+
+[node name="Portal2" parent="Portals" instance=ExtResource("2_p3boj")]
+position = Vector2(56, 0)
+level = "res://Worlds/MyFirstWorld/level01.tscn"
+
+[node name="Killzone" parent="." instance=ExtResource("3_i0scc")]
+position = Vector2(8, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_2rg6d")
+
+[node name="Tilesets" type="Node2D" parent="."]
+
+[node name="Back" parent="Tilesets" instance=ExtResource("4_q17pd")]
+
+[node name="Mid" parent="Tilesets" instance=ExtResource("4_q17pd")]
+tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAD+/wAAAAACAAAAAAADAAAAAAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAA=")
+
+[node name="Fore" parent="Tilesets" instance=ExtResource("4_q17pd")]
+z_index = 100
+
+[node name="Platforms" type="Node2D" parent="."]

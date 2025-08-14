@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://i4k8gbldhlmt"]
+[gd_scene load_steps=4 format=3 uid="uid://i4k8gbldhlmt"]
 
 [ext_resource type="PackedScene" uid="uid://bv2wqjkcub0y0" path="res://Worldbuilding/Tilesets/world_tileset.tscn" id="1_flyep"]
+[ext_resource type="PackedScene" uid="uid://cnhipohurwmj3" path="res://Worldbuilding/Killzone/killzone.tscn" id="1_qlpon"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bbtk1"]
 
 [node name="LevelTemplate" type="Node2D"]
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="Killzone" parent="." instance=ExtResource("1_qlpon")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 40)
+shape = SubResource("WorldBoundaryShape2D_bbtk1")
 
 [node name="Tilesets" type="Node2D" parent="."]
 

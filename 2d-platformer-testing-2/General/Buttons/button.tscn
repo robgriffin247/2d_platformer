@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx6dvyvxwgkd1"]
 
-[ext_resource type="FontFile" uid="uid://dolp8an1vkxs3" path="res://Assets/fonts/PixelOperator8.ttf" id="1_28r0m"]
+[ext_resource type="FontFile" uid="uid://dolp8an1vkxs3" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_28r0m"]
 [ext_resource type="Script" path="res://General/Buttons/button.gd" id="2_y2hau"]
 
 [node name="Button" type="Button"]
